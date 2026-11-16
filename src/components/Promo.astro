@@ -1,0 +1,18 @@
+---
+import Section from "./Section.astro";
+import CallButton from "./CallButton.astro";
+import { contacts } from "../data/site";
+---
+<Section id="promo" class="band band--sun promo" rec="U-R006,S-R003">
+  <div class="container promo__grid">
+    <p class="promo__big num" aria-hidden="true">−15%</p>
+    <div class="promo__text">
+      <h2>Black Friday: −15% на всі абонементи</h2>
+      <p class="promo__dates">З 23 по 29 листопада 2026 року. Абонемент зі знижкою оформлюють на рецепції комплексу.</p>
+      <div class="promo__actions">
+        <CallButton href={contacts.reception.href} label="Зателефонувати на рецепцію" ariaLabel={`Абонемент зі знижкою: зателефонувати на рецепцію ${contacts.reception.display}`} />
+        <a class="btn btn--ghost" href="#abonements">Переглянути абонементи</a>
+      </div>
+    </div>
+  </div>
+</Section>

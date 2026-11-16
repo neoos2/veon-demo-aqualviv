@@ -1,0 +1,50 @@
+---
+import { Picture } from "astro:assets";
+import Section from "./Section.astro";
+import CallButton from "./CallButton.astro";
+import DepthMark from "./DepthMark.astro";
+import FutureLink from "./FutureLink.astro";
+import { contacts, FUTURE } from "../data/site";
+import kids from "../assets/img/family-kids.jpg";
+---
+<Section id="family" class="band band--air family" rec="U-R008">
+  <div class="container">
+    <div class="band__head band__head--depth">
+      <DepthMark depth="0,35–0,9 м" temp="30 °C" pool="дитячий басейн" />
+      <div>
+        <h2>Дітям і родинам</h2>
+        <p class="band__lead">Дитячий басейн найменшої глибини з теплою водою й озонуванням, сімейний квиток і дитяча кімната — все в одному візиті.</p>
+      </div>
+    </div>
+    <div class="family__grid">
+      <figure class="family__photo">
+        <Picture src={kids} formats={["webp"]} widths={[480, 800, 1200]} sizes="(min-width: 1100px) 580px, (min-width: 768px) 50vw, 100vw" quality={64} alt="Діти й дорослі в купальниках у залі аквапарку «Пляж»" loading="lazy" />
+      </figure>
+      <ul class="family__facts">
+        <li>
+          <h3>Сімейний квиток</h3>
+          <p>3 особи, з них не більше 2 дорослих: <strong class="nowrap">1450 грн</strong> за 2 години, <strong class="nowrap">2100 грн</strong> за весь день.</p>
+        </li>
+        <li>
+          <h3>Діти до 1 м</h3>
+          <p>Безкоштовно разом із дорослим.</p>
+        </li>
+        <li>
+          <h3>Дитячий басейн</h3>
+          <p>Глибина 0,35–0,9 м, вода 30 °C, озонування.</p>
+        </li>
+        <li>
+          <h3>Дитяча кімната і свята</h3>
+          <p>Про дитячу кімнату й дитячий день народження розкаже рецепція. <FutureLink note={FUTURE}>Дитячий день народження</FutureLink></p>
+        </li>
+        <li>
+          <h3>Абонементи для дітей і мам</h3>
+          <p>АКВАПАРК «KIDS» і АКВАmама — <a href="#abonements">у розділі абонементів</a>.</p>
+        </li>
+      </ul>
+    </div>
+    <div class="band__cta">
+      <CallButton href={contacts.reception.href} label="Зателефонувати на рецепцію" ariaLabel={`Родинам і дітям: зателефонувати на рецепцію ${contacts.reception.display}`} />
+    </div>
+  </div>
+</Section>

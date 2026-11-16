@@ -1,0 +1,24 @@
+---
+import FutureLink from "./FutureLink.astro";
+import { contacts, nav, FUTURE } from "../data/site";
+const year = new Date().getFullYear();
+const service = ["Новини", "Вакансії", "Магазин «Акваспорт»", "Яммі бар", "Скеледром «Скеля»", "АКВА лаб", "English"];
+---
+<footer class="site-footer on-dark" data-rec="U-R002">
+  <div class="container site-footer__grid">
+    <a class="site-footer__logo" href="#top" aria-label="Аквапарк «Пляж», на початок сторінки">
+      <img src="logo-240.webp" width="120" height="82" alt="Аквапарк «Пляж»" />
+    </a>
+    <nav aria-label="Розділи головної, футер">
+      <ul class="site-footer__list">{nav.map((n) => <li><a href={n.href}>{n.label}</a></li>)}</ul>
+    </nav>
+    <div>
+      <p class="site-footer__label">Інші розділи</p>
+      <ul class="site-footer__list site-footer__list--future">{service.map((s) => <li><FutureLink note={FUTURE}>{s}</FutureLink></li>)}</ul>
+    </div>
+  </div>
+  <div class="container site-footer__legal">
+    <p>© {year} Аквапарк «Пляж». {contacts.legalName}</p>
+    <p>{contacts.address}</p>
+  </div>
+</footer>

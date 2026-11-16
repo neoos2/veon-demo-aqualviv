@@ -1,0 +1,86 @@
+---
+import { Picture } from "astro:assets";
+import Section from "./Section.astro";
+import DepthMark from "./DepthMark.astro";
+import FutureLink from "./FutureLink.astro";
+import { contacts, slides, FUTURE } from "../data/site";
+import slide from "../assets/img/aquapark-slide.jpg";
+import pool from "../assets/img/pool-50m.jpg";
+import relax from "../assets/img/relax-jacuzzi.jpg";
+---
+<Section id="zones" class="band band--brand zones" rec="U-R010,U-R009">
+  <div class="container">
+    <div class="band__head band__head--depth">
+      <DepthMark depth="1,5–1,8 м" temp="28 °C" pool="розважальний басейн" />
+      <div>
+        <h2>Що всередині</h2>
+        <p class="band__lead">Чотири зони під одним дахом: аквапарк, спортивний басейн, «Релакс» і фітнес-центр.</p>
+      </div>
+    </div>
+
+    <article class="zone zone--aqua">
+      <figure class="zone__photo">
+        <Picture src={slide} formats={["webp"]} widths={[480, 800, 1200, 1600]} sizes="(min-width: 1100px) 680px, (min-width: 768px) 58vw, 100vw" quality={62} alt="Червона й жовта гірки в критому залі аквапарку «Пляж», відвідувач спускається на колі" loading="lazy" />
+      </figure>
+      <div class="zone__body">
+        <h3 class="zone__title">Аквапарк</h3>
+        <p>Гірки працюють з 11:00 до 19:45. З понеділка по четвер — внутрішні, з п’ятниці по неділю — ще й зовнішні.</p>
+        <p class="zone__label">Гірки</p>
+        <ul class="chips">{slides.map((s) => <li>{s}</li>)}</ul>
+        <p class="zone__label">Басейни</p>
+        <p>Дитячий, розважальний, з протитечією і спортивний 50 м.</p>
+        <p class="zone__more"><FutureLink note={FUTURE}>Усе про аквапарк</FutureLink></p>
+      </div>
+    </article>
+  </div>
+
+  <div class="lane">
+    <div class="lane__lines" aria-hidden="true">{Array.from({ length: 8 }).map(() => <span />)}</div>
+    <div class="container lane__grid">
+      <div class="lane__text">
+        <h3 class="zone__title" id="lane-title">Спортивний басейн</h3>
+        <dl class="lane__facts">
+          <div><dt>Довжина</dt><dd class="num">50 м</dd></div>
+          <div><dt>Доріжок</dt><dd class="num">8</dd></div>
+          <div><dt>Глибина</dt><dd class="num">2,3–2,8 м</dd></div>
+          <div><dt>Вода</dt><dd class="num">27 °C</dd></div>
+        </dl>
+        <p>Тут працюють спортивні секції й тренери з плавання.</p>
+        <p class="zone__more"><FutureLink note={FUTURE}>Басейн 50 м</FutureLink> <FutureLink note={FUTURE}>Спортивні секції</FutureLink></p>
+      </div>
+      <figure class="lane__photo">
+        <Picture src={pool} formats={["webp"]} widths={[480, 800]} sizes="(min-width: 768px) 46vw, 100vw" quality={66} alt="Плавці на доріжках 50-метрового басейну" loading="lazy" />
+      </figure>
+    </div>
+  </div>
+
+  <div class="container">
+    <article class="zone zone--relax">
+      <div class="zone__body">
+        <h3 class="zone__title">Зона «Релакс»</h3>
+        <p>5 бань і саун, джакузі, масаж і студія засмаги.</p>
+        <p>Джакузі та «Релакс» — доплата 10 грн/хв. Пільговий квиток цю зону не включає.</p>
+        <p class="zone__more"><FutureLink note={FUTURE}>Релакс</FutureLink> <FutureLink note={FUTURE}>Студія засмаги</FutureLink></p>
+      </div>
+      <figure class="zone__photo">
+        <Picture src={relax} formats={["webp"]} widths={[480, 800, 1200]} sizes="(min-width: 1100px) 480px, (min-width: 768px) 42vw, 100vw" quality={62} alt="Джакузі з підсвіткою і двері саун у зоні «Релакс»" loading="lazy" />
+      </figure>
+    </article>
+
+    <article class="zone zone--fitness">
+      <h3 class="zone__title zone__title--big">Фітнес-центр</h3>
+      <p class="zone__fit-text">Атлетичний зал, групові заняття, розклади й тренери.</p>
+      <p class="zone__fit-phones">
+        Телефон фітнес-центру:
+        <a href={contacts.fitness.href}>{contacts.fitness.display}</a>,
+        <a href={contacts.fitnessMobile.href}>{contacts.fitnessMobile.display}</a>
+      </p>
+      <p class="zone__more"><FutureLink note={FUTURE}>Фітнес-центр</FutureLink> <FutureLink note={FUTURE}>Розклади</FutureLink></p>
+    </article>
+
+    <div class="lab">
+      <p class="lab__big num">кожні 3 години</p>
+      <p class="lab__text">Власна лабораторія АКВА лаб перевіряє воду в басейнах. <FutureLink note={FUTURE}>Про АКВА лаб</FutureLink></p>
+    </div>
+  </div>
+</Section>

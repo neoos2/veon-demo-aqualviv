@@ -1,0 +1,50 @@
+---
+import { Picture } from "astro:assets";
+import Section from "./Section.astro";
+import CallButton from "./CallButton.astro";
+import Icon from "./Icon.astro";
+import DepthMark from "./DepthMark.astro";
+import { contacts } from "../data/site";
+import tubes from "../assets/img/hero-tubes.jpg";
+---
+<Section id="hero" class="hero" rec="U-R001,U-R009,SE-R002,SE-R003">
+  <div class="container hero__text">
+    <h1 class="hero__title" data-rec="SE-R001">Аквапарк «Пляж» у <span class="nowrap">Львові —</span> гірки, <span class="nowrap">50-метровий</span> басейн, фітнес і релакс</h1>
+    <p class="hero__lead">Усе в одній будівлі на {contacts.addressShort}: аквапарк, спортивний басейн 50 м на 8 доріжок, фітнес-центр і зона «Релакс».</p>
+    <dl class="board" aria-label="Коротко про візит">
+      <div class="board__item">
+        <dt data-today-label>Графік</dt>
+        <dd><span class="board__value" data-today-hours>7:00–21:00</span><span class="board__note" data-today-note>пн–сб; у неділю 8:00–21:00</span></dd>
+      </div>
+      <div class="board__item">
+        <dt>Гірки</dt>
+        <dd><span class="board__value">11:00–19:45</span><span class="board__note">пн–чт лише внутрішні, пт–нд і зовнішні</span></dd>
+      </div>
+      <div class="board__item">
+        <dt>Квиток</dt>
+        <dd><span class="board__value">від 400 грн</span><span class="board__note">1 година, «Стандарт»</span></dd>
+      </div>
+    </dl>
+    <div class="hero__actions" data-rec="U-R003">
+      <CallButton href={contacts.reception.href} label="Зателефонувати на рецепцію" ariaLabel={`Зателефонувати на рецепцію: ${contacts.reception.display}`} />
+      <a class="btn btn--ghost hero__route" href={contacts.mapHref} target="_blank" rel="noopener" aria-label="Маршрут на карті Google, відкриється в новій вкладці">
+        <Icon name="route" size={20} />
+        <span>Маршрут</span>
+      </a>
+    </div>
+  </div>
+  <div class="hero__water" data-rec="P-R001,P-R002,P-R003,SE-R008">
+    <div class="container hero__mark-wrap"><DepthMark depth="0,35 м" temp="30 °C" pool="мілина дитячого басейну" reveal={false} class="hero__mark" /></div>
+    <Picture
+      src={tubes}
+      formats={["webp"]}
+      widths={[480, 768, 1152]}
+      sizes="100vw"
+      quality={62}
+      loading="eager"
+      fetchpriority="high"
+      alt="Відвідувачі на жовтих надувних колах у бірюзовій воді басейну аквапарку «Пляж»"
+      class="hero__img"
+    />
+  </div>
+</Section>

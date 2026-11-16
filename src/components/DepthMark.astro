@@ -1,0 +1,10 @@
+---
+// Real pool depth and water temperature (client.json W-F004), shown like a mark on the pool edge.
+interface Props { depth: string; temp: string; pool: string; reveal?: boolean; class?: string; }
+const { depth, temp, pool, reveal = true, class: cls } = Astro.props;
+---
+<p class:list={["depth", cls]} data-reveal={reveal ? "depth" : undefined}>
+  <span class="depth__m">{depth}</span>
+  <span class="depth__t">{temp}</span>
+  <span class="depth__pool">{pool}</span>
+</p>

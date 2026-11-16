@@ -1,0 +1,58 @@
+---
+import Icon from "./Icon.astro";
+import FutureLink from "./FutureLink.astro";
+import { contacts, nav, futureSections, FUTURE } from "../data/site";
+---
+<header class="site-header" data-header data-rec="U-R002,U-R003">
+  <div class="container site-header__bar">
+    <a class="site-header__logo" href="#top" aria-label="Аквапарк «Пляж», на початок сторінки">
+      <img src="logo-240.webp" srcset="logo-120.webp 120w, logo-240.webp 240w" sizes="88px" width="88" height="60" alt="Аквапарк «Пляж»" />
+    </a>
+    <nav class="site-nav" aria-label="Розділи головної">
+      <ul>
+        {nav.map((n) => <li><a href={n.href}>{n.label}</a></li>)}
+      </ul>
+    </nav>
+    <div class="site-header__actions">
+      <a class="site-header__phone" href={contacts.reception.href} aria-label={`Рецепція: ${contacts.reception.display}`}>{contacts.reception.display}</a>
+      <a class="btn btn--primary btn--sm site-header__call" href={contacts.reception.href}>
+        <Icon name="phone" size={18} />
+        <span class="site-header__call-long">Зателефонувати</span><span class="site-header__call-short">Рецепція</span>
+      </a>
+      <button class="site-header__menu-btn" type="button" popovertarget="site-menu" aria-label="Відкрити меню">
+        <Icon name="menu" size={22} />
+        <span>Меню</span>
+      </button>
+    </div>
+  </div>
+</header>
+
+<div id="site-menu" class="menu" popover>
+  <div class="menu__inner">
+    <div class="menu__top">
+      <span class="menu__title">Меню</span>
+      <button class="menu__close" type="button" popovertarget="site-menu" popovertargetaction="hide" aria-label="Закрити меню">
+        <Icon name="close" size={24} />
+      </button>
+    </div>
+    <nav aria-label="Розділи головної, мобільне меню">
+      <ul class="menu__anchors">
+        {nav.map((n) => <li><a href={n.href} data-menu-link>{n.label}</a></li>)}
+      </ul>
+    </nav>
+    <div class="menu__block">
+      <p class="menu__label">Розділи сайту</p>
+      <ul class="menu__future">
+        {futureSections.slice(0, 8).map((s) => <li><FutureLink note={FUTURE}>{s}</FutureLink></li>)}
+      </ul>
+    </div>
+    <div class="menu__block">
+      <p class="menu__label">Телефони</p>
+      <ul class="menu__phones">
+        <li><span>Рецепція</span><a href={contacts.reception.href}>{contacts.reception.display}</a></li>
+        <li><span>Фітнес-центр</span><a href={contacts.fitness.href}>{contacts.fitness.display}</a></li>
+        <li><span>Групи і турфірми</span><a href={contacts.groups.href}>{contacts.groups.display}</a></li>
+      </ul>
+    </div>
+  </div>
+</div>

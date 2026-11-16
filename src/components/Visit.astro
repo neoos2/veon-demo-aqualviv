@@ -1,0 +1,46 @@
+---
+import Section from "./Section.astro";
+import CallButton from "./CallButton.astro";
+import FutureLink from "./FutureLink.astro";
+import Icon from "./Icon.astro";
+import { contacts, FUTURE } from "../data/site";
+---
+<Section id="visit" class="band band--floor on-dark visit" rec="U-R007">
+  <div class="container">
+    <div class="band__head">
+      <h2>Як нас знайти</h2>
+    </div>
+    <div class="visit__grid">
+      <div class="visit__col visit__where">
+        <h3>Адреса</h3>
+        <p class="visit__address">{contacts.address}</p>
+        <a class="btn btn--ghost-light" href={contacts.mapHref} target="_blank" rel="noopener" aria-label="Маршрут на карті Google, відкриється в новій вкладці"><Icon name="route" size={20} /><span>Маршрут</span></a>
+        <p class="visit__parking">У комплексу є парковка. <FutureLink note={FUTURE}>Тарифи парковки</FutureLink></p>
+      </div>
+      <div class="visit__col">
+        <h3>Графік</h3>
+        <dl class="visit__hours">
+          <div><dt>Пн–сб</dt><dd class="num">7:00–21:00</dd></div>
+          <div><dt>Нд</dt><dd class="num">8:00–21:00</dd></div>
+          <div><dt>Гірки щодня</dt><dd class="num">11:00–19:45</dd></div>
+        </dl>
+        <p class="band__small">Пн–чт працюють внутрішні гірки, пт–нд — внутрішні й зовнішні.</p>
+      </div>
+      <div class="visit__col visit__phones">
+        <h3>Телефони</h3>
+        <dl>
+          <div><dt>Рецепція</dt><dd><a href={contacts.reception.href}>{contacts.reception.display}</a><a href={contacts.receptionCity.href}>{contacts.receptionCity.display}</a><span class="band__small">також студія засмаги</span></dd></div>
+          <div><dt>Фітнес-центр</dt><dd><a href={contacts.fitness.href}>{contacts.fitness.display}</a><a href={contacts.fitnessMobile.href}>{contacts.fitnessMobile.display}</a></dd></div>
+          <div><dt>Групи і турфірми</dt><dd><a href={contacts.groups.href}>{contacts.groups.display}</a><a href={`mailto:${contacts.groupsEmail}`}>{contacts.groupsEmail}</a></dd></div>
+        </dl>
+      </div>
+    </div>
+    <div class="visit__bottom">
+      <CallButton href={contacts.reception.href} label="Зателефонувати на рецепцію" ariaLabel={`Зателефонувати на рецепцію: ${contacts.reception.display}`} />
+      <ul class="visit__social" aria-label="Соцмережі">
+        <li><a href={contacts.instagram} target="_blank" rel="noopener" aria-label="Instagram аквапарку, відкриється в новій вкладці"><Icon name="instagram" size={22} /><span>Instagram</span></a></li>
+        <li><a href={contacts.facebook} target="_blank" rel="noopener" aria-label="Facebook аквапарку, відкриється в новій вкладці"><Icon name="facebook" size={22} /><span>Facebook</span></a></li>
+      </ul>
+    </div>
+  </div>
+</Section>

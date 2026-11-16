@@ -1,0 +1,45 @@
+---
+import Base from "../layouts/Base.astro";
+import Header from "../components/Header.astro";
+import Hero from "../components/Hero.astro";
+import Promo from "../components/Promo.astro";
+import Prices from "../components/Prices.astro";
+import Family from "../components/Family.astro";
+import Zones from "../components/Zones.astro";
+import Abonements from "../components/Abonements.astro";
+import Groups from "../components/Groups.astro";
+import Visit from "../components/Visit.astro";
+import Footer from "../components/Footer.astro";
+import CallBar from "../components/CallBar.astro";
+import { contacts } from "../data/site";
+
+const title = "Аквапарк «Пляж» у Львові — ціни, графік, абонементи";
+const description = "Аквапарк, басейн 50 м на 8 доріжок, фітнес і зона «Релакс» на вул. Княгині Ольги, 114. Квиток від 400 грн, щодня з 7:00 (нд з 8:00). Рецепція: 067 373 71 73.";
+const ld = {
+  "@context": "https://schema.org",
+  "@type": ["AmusementPark", "SportsActivityLocation"],
+  name: "Аквапарк «Пляж»",
+  telephone: "+380673737173",
+  priceRange: "400–2100 грн",
+  address: { "@type": "PostalAddress", streetAddress: "вул. Княгині Ольги, 114", addressLocality: "Львів", postalCode: "79060", addressCountry: "UA" },
+  openingHoursSpecification: [
+    { "@type": "OpeningHoursSpecification", dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"], opens: "07:00", closes: "21:00" },
+    { "@type": "OpeningHoursSpecification", dayOfWeek: "Sunday", opens: "08:00", closes: "21:00" },
+  ],
+  sameAs: [contacts.instagram, contacts.facebook],
+};
+---
+<Base lang="uk" title={title} description={description}>
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(ld)} />
+  <Header slot="header" />
+  <Hero />
+  <Promo />
+  <Prices />
+  <Family />
+  <Zones />
+  <Abonements />
+  <Groups />
+  <Visit />
+  <Footer slot="footer" />
+  <CallBar slot="footer" />
+</Base>

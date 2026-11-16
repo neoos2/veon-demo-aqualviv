@@ -1,0 +1,34 @@
+---
+import { Picture } from "astro:assets";
+import Section from "./Section.astro";
+import CallButton from "./CallButton.astro";
+import { contacts } from "../data/site";
+import school from "../assets/img/groups-school.jpg";
+---
+<Section id="groups" class="band band--deep groups" rec="U-R008">
+  <div class="container groups__grid">
+    <figure class="groups__photo">
+      <Picture src={school} formats={["webp"]} widths={[480, 800]} sizes="(min-width: 900px) 45vw, 100vw" quality={66} alt="Група школярів у холі комплексу біля входу до фітнес-центру" loading="lazy" />
+    </figure>
+    <div class="groups__panel">
+      <h2>Групам і турфірмам</h2>
+      <p class="band__lead">Груповий квиток — від 15 осіб, за попереднім записом за телефоном.</p>
+      <table class="groups__table">
+        <caption class="visually-hidden">Груповий квиток, ціна на одну особу</caption>
+        <thead><tr><th scope="col">Квиток</th><th scope="col">2 години</th><th scope="col">Весь день</th></tr></thead>
+        <tbody>
+          <tr><th scope="row">Стандарт</th><td><span class="num">550</span> грн</td><td><span class="num">700</span> грн</td></tr>
+          <tr><th scope="row">Пільговий</th><td><span class="num">400</span> грн</td><td><span class="num">600</span> грн</td></tr>
+        </tbody>
+      </table>
+      <div class="groups__manager">
+        <p class="groups__who">{contacts.groupsManager}</p>
+        <p class="band__small">Корпоративні клієнти, турфірми і групи, {contacts.groupsHours}</p>
+      </div>
+      <div class="groups__actions">
+        <CallButton href={contacts.groups.href} label={contacts.groups.display} ariaLabel={`Зателефонувати менеджеру груп: ${contacts.groups.display}`} wide />
+        <CallButton href={`mailto:${contacts.groupsEmail}`} label={contacts.groupsEmail} variant="ghost" icon="mail" wide ariaLabel={`Написати менеджеру груп: ${contacts.groupsEmail}`} />
+      </div>
+    </div>
+  </div>
+</Section>

@@ -1,0 +1,10 @@
+---
+import Icon from "./Icon.astro";
+interface Props { href: string; label: string; ariaLabel?: string; variant?: "primary" | "ghost" | "ghost-light"; wide?: boolean; icon?: "phone" | "route" | "mail"; external?: boolean; rec?: string; }
+const { href, label, ariaLabel, variant = "primary", wide = false, icon = "phone", external = false, rec } = Astro.props;
+---
+<a class:list={["btn", `btn--${variant}`, { "btn--wide": wide }]} href={href} aria-label={ariaLabel} data-rec={rec}
+  {...(external ? { target: "_blank", rel: "noopener" } : {})}>
+  <Icon name={icon} size={20} />
+  <span>{label}</span>
+</a>

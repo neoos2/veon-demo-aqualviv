@@ -1,0 +1,64 @@
+---
+import Section from "./Section.astro";
+import CallButton from "./CallButton.astro";
+import { contacts, tickets, extras } from "../data/site";
+---
+<Section id="prices" class="band band--shallow prices" rec="U-R004">
+  <div class="container">
+    <div class="band__head">
+      <h2>Ціни на квитки</h2>
+      <p class="band__lead">Квиток купують на рецепції комплексу. Доплати, пільги й графік гірок — тут же, поруч із цінами.</p>
+    </div>
+    <div class="prices__grid">
+      <div class="tabs" data-tabs>
+        <div class="tabs__list" role="tablist" aria-label="Тип квитка">
+          {tickets.map((t, i) => (
+            <button class="tabs__tab" type="button" role="tab" id={`tab-${t.id}`} aria-controls={`panel-${t.id}`} aria-selected={i === 0 ? "true" : "false"} tabindex={i === 0 ? 0 : -1}>{t.tab}</button>
+          ))}
+        </div>
+        <div class="tabs__panels">
+          {tickets.map((t) => (
+            <div class="tabs__panel" role="tabpanel" id={`panel-${t.id}`} aria-labelledby={`tab-${t.id}`} tabindex="0">
+              <h3>{t.title}</h3>
+              <p class="tabs__who">{t.who}</p>
+              <div class:list={[{ "fares-split": t.groups.length > 1 }]}>
+              {t.groups.map((g) => (
+                <div class="fares">
+                  {g.title && <p class="fares__title">{g.title}</p>}
+                  <dl class="fares__row">
+                    {g.cells.map((c) => (
+                      <div class="fare">
+                        <dt>{c.label}</dt>
+                        <dd><span class="fare__price num">{c.price}</span> <span class="fare__cur">грн</span></dd>
+                      </div>
+                    ))}
+                  </dl>
+                </div>
+              ))}
+              </div>
+              {t.note && <p class="tabs__note">{t.note}</p>}
+              {t.id === "group-ticket" && <p class="tabs__note"><a href="#groups">Менеджер груп і контакти</a></p>}
+            </div>
+          ))}
+        </div>
+        <div class="band__cta prices__cta">
+          <CallButton href={contacts.reception.href} label="Зателефонувати на рецепцію" ariaLabel={`Питання про квитки: зателефонувати на рецепцію ${contacts.reception.display}`} />
+          <p class="band__small">Актуальність цін і знижок підтвердить рецепція.</p>
+        </div>
+      </div>
+      <aside class="prices__aside" aria-label="Доплати і графік гірок">
+        <h3>Доплати й пільги</h3>
+        <dl class="extras">
+          {extras.map((e) => (
+            <div class="extras__row"><dt>{e.what}</dt><dd>{e.price}</dd></div>
+          ))}
+        </dl>
+        <h3 class="prices__slides-title">Графік гірок</h3>
+        <ul class="slides-schedule">
+          <li data-days="mon-thu"><span class="slides-schedule__days">Пн–чт</span><span class="slides-schedule__time num">11:00–19:45</span><span class="slides-schedule__what">лише внутрішні гірки</span><span class="today-mark" data-today-mark hidden>сьогодні</span></li>
+          <li data-days="fri-sun"><span class="slides-schedule__days">Пт–нд</span><span class="slides-schedule__time num">11:00–19:45</span><span class="slides-schedule__what">внутрішні й зовнішні гірки</span><span class="today-mark" data-today-mark hidden>сьогодні</span></li>
+        </ul>
+      </aside>
+    </div>
+  </div>
+</Section>

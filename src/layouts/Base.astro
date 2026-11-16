@@ -1,0 +1,47 @@
+---
+import "@fontsource/m-plus-rounded-1c/cyrillic-700.css";
+import "@fontsource/m-plus-rounded-1c/cyrillic-800.css";
+import "@fontsource/m-plus-rounded-1c/latin-700.css";
+import "@fontsource/m-plus-rounded-1c/latin-800.css";
+import "@fontsource-variable/commissioner/wght.css";
+import bodyFontCyr from "@fontsource-variable/commissioner/files/commissioner-cyrillic-wght-normal.woff2?url";
+import "../styles/tokens.css";
+import "../styles/global.css";
+import "../styles/site.css";
+
+interface Props { lang: string; title: string; description: string; canonical?: string; }
+const { lang, title, description, canonical } = Astro.props;
+---
+<!doctype html>
+<html lang={lang}>
+  <head>
+    <meta charset="utf-8" />
+    <script is:inline>document.documentElement.classList.add("js")</script>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    {canonical && <link rel="canonical" href={canonical} />}
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="uk_UA" />
+    <meta name="robots" content="noindex" />
+    <meta name="theme-color" content="#FFFFFF" />
+    <link rel="icon" type="image/png" href="favicon.png" />
+    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+    <link rel="preload" href={bodyFontCyr} as="font" type="font/woff2" crossorigin />
+    <slot name="head" />
+    <style is:global>
+      /* Floor 34 is also declared in global.css; repeated here so the layout is self-contained. */
+      html, body { overflow-x: clip; }
+    </style>
+  </head>
+  <body id="top" data-rec="P-R004">
+    <a class="skip-link" href="#main">{lang.startsWith("uk") ? "До змісту" : lang.startsWith("ru") ? "К содержанию" : "Skip to content"}</a>
+    <slot name="header" />
+    <main id="main"><slot /></main>
+    <slot name="footer" />
+    <script src="../scripts/reveal.ts"></script>
+    <script src="../scripts/page.ts"></script>
+  </body>
+</html>

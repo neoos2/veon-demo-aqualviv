@@ -1,0 +1,9 @@
+---
+import Icon from "./Icon.astro";
+import { contacts } from "../data/site";
+---
+<div class="callbar" data-callbar data-rec="U-R003">
+  <a class="btn btn--primary btn--wide" href={contacts.reception.href} aria-label={`Зателефонувати на рецепцію: ${contacts.reception.display}`}>
+    <Icon name="phone" size={20} /><span class="nowrap">Рецепція: {contacts.reception.display}</span>
+  </a>
+</div>

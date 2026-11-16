@@ -1,0 +1,68 @@
+/* Hallmark · shape: depth-sections · genre: playful · theme: custom · job: visit · idea: "Від мілини до глибини: фон кроками темнішає від білого повітря над водою до синяви дна, кожен розділ позначено справжньою глибиною й температурою басейнів «Пляжу»" · vibe: "clear pool water, sunny, honest open prices"
+ * paper: #FFFFFF · accent: #D0142C · display: M PLUS Rounded 1c · body: Commissioner · hero: big two-line headline, poolside board (hours today, slides, ticket from 400 UAH), call reception + route, then a full-bleed photo of tubes cut by a straight waterline · nav: white sticky bar with six anchors, reception number and red call button; on phones call + menu popover · footer: pool-floor band with phones by purpose, service sections, legal name · imagery: client photos · signature: background steps darker like a dive, each section carries a real pool depth and temperature mark
+ * axes: white/rounded/red · surface: absolute · posture: full-palette · contrast: pass · fold: pass · v2.0.0 */
+/* Hallmark · waive 7b · tokens.css --color-bg #FFFFFF, --color-on-deep, --color-accent-ink · concept.md §5 fixes pure white as the «air» depth step and as the only text colour on #0B5A70/#D0142C that keeps AA; the depth sequence needs a true white top */
+/* Hallmark · waive 59 · bands .promo/.prices/.abonements use 64px · concept.md §8 «Сітка»: dense blocks (prices, abonements) 64px, airy (family, zones) 104px; every band also changes the depth colour, so the boundary never relies on space alone */
+/* Hallmark · answer WARN 3 · the left rule on .depth is the pool-edge depth gauge, the page signature (concept §5), not a decorative card stripe */
+/* Hallmark · answer WARN F7 · concept §Дизайн-система: 999px radius is the round brand shape for buttons, tabs and the small facts chips; photos and panels use 12px */
+/* Hallmark · answer WARN F19 · weights fixed by concept §Типографіка: display 700/800 for numbers and heads, body 400/500/600 */
+/* Hallmark · pre-emit critique: P4 H4 E4 S4 R4 V4 · weakest: E, the fitness zone has no client photo, so it is carried by type only as the concept says */
+/* Client design tokens from design/concept.md (veon-concept colors and fonts). */
+:root {
+  /* depth steps: air -> shallow -> mid water -> brand turquoise -> deep -> pool floor */
+  --color-bg: #FFFFFF;
+  --color-surface: #E3F5F6;
+  --color-water: #5CC6D3;
+  --color-brand: #149FB5;
+  --color-deep: #0B5A70;
+  --color-floor: #06303D;
+  --color-text: #0B2A33;
+  --color-muted: #45626B;
+  --color-on-deep: #FFFFFF;
+  --color-on-deep-muted: #BFE9EE;
+  --color-on-floor-muted: #9FD9E1;
+  --color-accent: #D0142C;
+  --color-accent-hover: #A80F22;
+  --color-accent-ink: #FFFFFF;
+  --color-sun: #FFA62B;
+  --color-focus: #0B2A33;
+  --color-focus-dark: #FFA62B;
+
+  --font-display: "M PLUS Rounded 1c", ui-rounded, system-ui, sans-serif;
+  --font-body: "Commissioner Variable", system-ui, sans-serif;
+
+  /* type scale 390 -> 1440 */
+  --fs-h1: clamp(1.875rem, 1.2rem + 2.9vw, 3.875rem);
+  --fs-depth: clamp(1.625rem, 1.2rem + 1.5vw, 2.5rem);
+  --fs-h2: clamp(1.875rem, 1.457rem + 1.714vw, 3rem);
+  --fs-num-xl: clamp(2.5rem, 2.129rem + 1.524vw, 3.5rem);
+  --fs-num-l: clamp(1.375rem, 1.143rem + 0.952vw, 2rem);
+  --fs-num-m: clamp(1.125rem, 0.986rem + 0.571vw, 1.5rem);
+  --fs-h3: clamp(1.25rem, 1.157rem + 0.381vw, 1.5rem);
+  --fs-body: clamp(1rem, 0.954rem + 0.19vw, 1.125rem);
+  --fs-small: 0.875rem;
+
+  /* spacing, multiples of 8 */
+  --s1: 0.5rem;
+  --s2: 1rem;
+  --s3: 1.5rem;
+  --s4: 2.5rem;
+  --s5: 4rem;
+  --s6: 6.5rem;
+  --section-dense: clamp(3rem, 2rem + 4vw, 4rem);
+  --section-airy: clamp(4rem, 2.5rem + 6vw, 6.5rem);
+
+  --radius: 12px;
+  --radius-field: 8px;
+  --radius-pill: 999px;
+
+  --ease-out: cubic-bezier(.2, .7, .2, 1);
+  --dur: 450ms;
+  --space: clamp(20px, 5vw, 64px);
+  --container: 1200px;
+  --gutter: 24px;
+  --header-h: 72px;
+}
+@media (max-width: 1099px) {
+  :root { --header-h: 60px; }
+}

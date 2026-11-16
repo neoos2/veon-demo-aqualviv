@@ -1,0 +1,45 @@
+---
+import Section from "./Section.astro";
+import CallButton from "./CallButton.astro";
+import DepthMark from "./DepthMark.astro";
+import FutureLink from "./FutureLink.astro";
+import { contacts, abonements, FUTURE } from "../data/site";
+---
+<Section id="abonements" class="band band--deep on-dark abon" rec="U-R005">
+  <div class="container">
+    <div class="band__head band__head--depth">
+      <DepthMark depth="2,3–2,8 м" temp="27 °C" pool="спортивний басейн" />
+      <div>
+        <h2>Абонементи</h2>
+        <p class="band__lead">Ціна за місяць. Точну вартість і склад абонемента назве рецепція.</p>
+        <p class="abon__promo">23–29 листопада — −15% на всі абонементи</p>
+      </div>
+    </div>
+    <ul class="abon__list">
+      {abonements.map((a) => (
+        <li class="abon__row">
+          <span class="rope" aria-hidden="true"><span /></span>
+          <div class="abon__name">
+            <h3>{a.name}</h3>
+            {a.long && <p class="abon__long">{a.long}</p>}
+          </div>
+          <p class="abon__price"><span class="abon__approx">≈</span><span class="num">{a.month}</span> <span class="abon__unit">грн/міс</span></p>
+          <a class="btn btn--ghost-light btn--sm abon__act" href={contacts.reception.href} aria-label={`Оформити «${a.name}»: зателефонувати на рецепцію ${contacts.reception.display}`}>Оформити</a>
+        </li>
+      ))}
+    </ul>
+    <p class="abon__also">
+      Також є сімейні абонементи на місяць: 3 особи — ≈ 7800 грн, 4 особи — ≈ 10 700 грн; АКВА+ на 3, 6 і 12 місяців — 8100, 13 800 і 25 200 грн.
+    </p>
+    <ul class="abon__future">
+      <li><FutureLink note={FUTURE}>Усі абонементи</FutureLink></li>
+      <li><FutureLink note={FUTURE}>Поповнення абонемента</FutureLink></li>
+      <li><FutureLink note={FUTURE}>Пам’ятка</FutureLink></li>
+      <li><FutureLink note={FUTURE}>Програма лояльності</FutureLink></li>
+    </ul>
+    <div class="band__cta">
+      <CallButton href={contacts.reception.href} label="Зателефонувати на рецепцію" ariaLabel={`Абонементи: зателефонувати на рецепцію ${contacts.reception.display}`} />
+      <p class="band__small">Фітнес-центр: <a href={contacts.fitness.href}>{contacts.fitness.display}</a></p>
+    </div>
+  </div>
+</Section>
